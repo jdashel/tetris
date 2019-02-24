@@ -18,6 +18,7 @@ int main() {
 	t.loadFromFile("./images/tetris_tiles.png");
 
 	Sprite s(t);
+	s.setTextureRect(IntRect(0, 0, 18, 18));
 
 	while(window.isOpen()) {
 		Event e;
