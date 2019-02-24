@@ -22,6 +22,7 @@ local.properties
 
 # CDT-specific (C/C++ Development Tooling)
 .cproject
+.project
 
 # CDT- autotools
 .autotools
@@ -54,3 +55,7 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+*.o
+*.exe
+*.dll

@@ -14,6 +14,11 @@ using namespace sf;
 int main() {
 	RenderWindow window(VideoMode(320, 480), "The game!");
 
+	Texture t;
+	t.loadFromFile("./images/tetris_tiles.png");
+
+	Sprite s(t);
+
 	while(window.isOpen()) {
 		Event e;
 		while(window.pollEvent(e)){
@@ -23,6 +28,7 @@ int main() {
 		}
 
 		window.clear(Color::White);
+		window.draw(s);
 		window.display();
 
 	}
