@@ -34,18 +34,42 @@ int main() {
 	Sprite s(t);
 	s.setTextureRect(IntRect(0, 0, 18, 18));
 
+	int dx = 0; bool rotate = 0; int colorNum = 1;
+
 	while(window.isOpen()) {
 		Event e;
 		while(window.pollEvent(e)){
 			if(e.type == Event::Closed) {
 				window.close();
 			}
+			if(e.type == Event::KeyPressed) {
+				if(e.key.code == Keyboard::Up) rotate = true;
+				else if(e.key.code == Keyboard::Left) dx = -1;
+				else if(e.key.code == Keyboard::Right) dx = 1;
+			}
 		}
+
+		for(int i = 0; i < 4; i++) a[i].x += dx;
+
+		if(rotate) {
+			Point p = a[1];
+			for(int i = 0; i < 4; i++) {
+				int x = a[i].y - p.y;
+				int y = a[i].x - p.x;
+				a[i].x = p.x - x;
+				a[i].y = p.y + y;
+			}
+		}
+
 		int n = 3;
-		for(int i = 0; i < 4; i++) {
-			a[i].x = figures[n][i] % 2;
-			a[i].y = figures[n][i] / 2;
+		if(a[0].x == 0) {
+			for(int i = 0; i < 4; i++) {
+				a[i].x = figures[n][i] % 2;
+				a[i].y = figures[n][i] / 2;
+			}
 		}
+
+		dx = 0; rotate=0;
 
 		window.clear(Color::White);
 
